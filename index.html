@@ -15,6 +15,7 @@
     <nav class="nav">
       <div class="brand">AS</div>
       <div class="links">
+        <button id="themeToggle" class="theme-btn" type="button">☀️ Light</button>
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
@@ -79,8 +80,19 @@
       </div>
     </section>
 
+    
+    <section class="card stats">
+      <h2>Quick Highlights</h2>
+      <div class="grid">
+        <article><h3><span data-count="250">0</span>+</h3><p>Fiverr Orders</p></article>
+        <article><h3><span data-count="12">0</span>+</h3><p>Major ML Projects</p></article>
+        <article><h3><span data-count="3">0</span>+</h3><p>Years in ML Roles</p></article>
+      </div>
+    </section>
+
     <section id="projects" class="card">
       <h2>Projects (from your PDF)</h2>
+      <input id="projectSearch" class="search" type="text" placeholder="Filter projects (e.g. YOLO, NLP, GAN, AWS)" />
       <div class="grid">
         <article><h3>Aixcelrator (The Hackett Group)</h3><p>AI-based CRM for Hackett Group clients. (Aug 2024 – Present)</p></article>
         <article><h3>Real Time Activity Monitoring</h3><p>Android + web monitoring for old-age homes with fall/medical alert detection. (Aug 2024)</p></article>
