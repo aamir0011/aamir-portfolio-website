@@ -53,3 +53,16 @@ body.light .theme-btn{background:#fff;color:#123;border-color:#c9d7ff}
 .social-btn{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:#162450;border:1px solid #2e4382;color:#dce5ff;text-decoration:none;box-shadow:0 6px 22px rgba(0,0,0,.25);transition:.2s transform,.2s background}
 .social-btn:hover{transform:translateY(-2px) scale(1.03);background:#223474}
 body.light .social-btn{background:#fff;color:#123;border-color:#c9d7ff}
+
+
+.scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#60a5ff,#38bdf8,#818cf8);width:0%;z-index:60;box-shadow:0 0 12px rgba(96,165,255,.7)}
+.particle-canvas{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.35}
+.back-to-top{position:fixed;right:18px;bottom:78px;width:42px;height:42px;border-radius:999px;border:1px solid #355098;background:#162450;color:#dbe6ff;cursor:pointer;opacity:0;transform:translateY(12px);transition:.25s;z-index:40}
+.back-to-top.show{opacity:1;transform:translateY(0)}
+.card, article{transition:transform .25s ease, box-shadow .25s ease}
+.card.tilt:hover, article.tilt:hover{transform:translateY(-4px) rotateX(1deg) rotateY(-1deg);box-shadow:0 14px 30px rgba(0,0,0,.2)}
+.glow-ring{position:relative;overflow:hidden}
+.glow-ring::after{content:"";position:absolute;inset:-40%;background:conic-gradient(from 90deg, transparent, rgba(124,157,255,.45), transparent 35%);animation:ring 4s linear infinite}
+.glow-ring>*{position:relative;z-index:1}
+@keyframes ring{to{transform:rotate(360deg)}}
+body.light .back-to-top{background:#fff;border-color:#c9d7ff;color:#1b2a5f}

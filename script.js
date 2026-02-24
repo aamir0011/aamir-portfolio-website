@@ -53,3 +53,56 @@ const countObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 counters.forEach(c => countObs.observe(c));
+
+
+// Scroll progress bar
+const progressBar = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  if (progressBar) progressBar.style.width = Math.min(100, Math.max(0, scrolled)) + '%';
+});
+
+// Back to top button
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if (!backToTop) return;
+  backToTop.classList.toggle('show', window.scrollY > 500);
+});
+if (backToTop) backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// Add tilt/glow classes
+for (const el of document.querySelectorAll('.card, article')) el.classList.add('tilt');
+const heroCard = document.querySelector('.hero-content');
+if (heroCard) heroCard.classList.add('glow-ring');
+
+// Lightweight particle background
+const canvas = document.getElementById('particle-canvas');
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  let w, h, pts;
+  const N = 40;
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    pts = Array.from({length: N}, () => ({x: Math.random()*w, y: Math.random()*h, vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4}));
+  }
+  function tick() {
+    ctx.clearRect(0,0,w,h);
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x<0||p.x>w) p.vx*=-1;
+      if (p.y<0||p.y>h) p.vy*=-1;
+      ctx.beginPath(); ctx.arc(p.x,p.y,1.6,0,Math.PI*2); ctx.fillStyle='rgba(148,163,255,.8)'; ctx.fill();
+    }
+    for (let i=0;i<pts.length;i++) for (let k=i+1;k<pts.length;k++) {
+      const a=pts[i], b=pts[k];
+      const d=Math.hypot(a.x-b.x,a.y-b.y);
+      if (d<110) { ctx.strokeStyle=`rgba(125,150,255,${(1-d/110)*0.2})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+    }
+    requestAnimationFrame(tick);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  tick();
+}
