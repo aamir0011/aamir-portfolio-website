@@ -1,3 +1,4 @@
+document.body.classList.add('js-motion');
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Mobile menu

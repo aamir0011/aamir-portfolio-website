@@ -113,13 +113,20 @@ main {
   width: 100%;
   position: relative;
   min-height: 100vh;
+  padding-top: 110px;
 }
-.landing-container { position: relative; min-height: 100vh; }
+.landing-container {
+  min-height: calc(100vh - 110px);
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(300px, 440px) minmax(220px, 1fr);
+  align-items: end;
+  gap: 34px;
+}
 
 .landing-intro {
-  position: absolute;
-  top: 17%;
-  left: 0;
+  position: relative;
+  align-self: start;
+  padding-top: 18px;
   z-index: 5;
 }
 .landing-intro h2 {
@@ -139,10 +146,9 @@ main {
 }
 
 .landing-image {
-  position: absolute;
-  left: 50%;
-  bottom: 60px;
-  transform: translateX(-50%);
+  position: relative;
+  justify-self: center;
+  align-self: end;
   z-index: 4;
 }
 .hero-3d {
@@ -186,9 +192,9 @@ main {
 }
 
 .landing-info {
-  position: absolute;
-  right: 0;
-  bottom: 80px;
+  position: relative;
+  align-self: end;
+  padding-bottom: 20px;
   z-index: 6;
   text-align: right;
 }
@@ -308,11 +314,15 @@ footer {
 }
 
 .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+body.js-motion .reveal {
   opacity: 0;
   transform: translateY(14px);
   transition: .7s ease;
 }
-.reveal.visible {
+body.js-motion .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -343,16 +353,27 @@ footer {
   .header ul.open { display: flex; }
   .navbar-connect { display: none; }
 
-  .landing-intro { top: 120px; }
-  .landing-image { position: relative; top: 260px; bottom: auto; }
-  .hero-3d { width: min(70vw, 360px); }
-  .hero-photo-overlay { width: min(32vw, 150px); }
+  .landing-section { padding-top: 96px; }
+  .landing-container {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 26px;
+    align-items: start;
+  }
+  .landing-intro {
+    padding-top: 28px;
+    align-self: start;
+  }
+  .landing-image {
+    justify-self: center;
+    align-self: start;
+  }
+  .hero-3d { width: min(76vw, 380px); }
+  .hero-photo-overlay { width: min(34vw, 150px); }
   .landing-info {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    margin-top: 300px;
     text-align: left;
+    align-self: start;
+    padding-bottom: 0;
   }
   .cta-row { justify-content: flex-start; }
   .social-icons { display: none; }
