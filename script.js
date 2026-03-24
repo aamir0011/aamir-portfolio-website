@@ -58,13 +58,26 @@ setInterval(() => {
 }, 2600);
 
 // Section reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.15 });
+const revealEls = Array.from(document.querySelectorAll('.reveal'));
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
 
-for (const el of document.querySelectorAll('.reveal')) observer.observe(el);
+  for (const el of revealEls) observer.observe(el);
+
+  // Failsafe: if observer doesn't trigger for some environments, show content anyway.
+  setTimeout(() => {
+    const shown = document.querySelectorAll('.reveal.visible').length;
+    if (shown < Math.min(3, revealEls.length)) {
+      revealEls.forEach((el) => el.classList.add('visible'));
+    }
+  }, 1200);
+} else {
+  revealEls.forEach((el) => el.classList.add('visible'));
+}
 
 // Lightweight 3D hero scene (Three.js)
 (function initHero3D() {
