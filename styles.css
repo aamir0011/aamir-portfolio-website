@@ -145,12 +145,31 @@ main {
   transform: translateX(-50%);
   z-index: 4;
 }
-.landing-image img {
+.hero-3d {
   width: min(46vw, 420px);
   min-width: 220px;
+  aspect-ratio: 3 / 4;
   border-radius: 20px;
   border: 1px solid #56406f;
+  background: radial-gradient(circle at 30% 30%, rgba(196,129,255,.22), rgba(8,8,12,.95));
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+.hero-3d canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+.hero-photo-overlay {
+  position: absolute;
+  inset: auto 50% 16px auto;
+  transform: translateX(50%);
+  width: min(24vw, 180px);
+  min-width: 120px;
+  border-radius: 14px;
+  border: 1px solid #8161b0;
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+  backdrop-filter: blur(2px);
 }
 .character-rim {
   position: absolute;
@@ -326,7 +345,8 @@ footer {
 
   .landing-intro { top: 120px; }
   .landing-image { position: relative; top: 260px; bottom: auto; }
-  .landing-image img { width: min(70vw, 360px); }
+  .hero-3d { width: min(70vw, 360px); }
+  .hero-photo-overlay { width: min(32vw, 150px); }
   .landing-info {
     position: relative;
     right: auto;
