@@ -167,8 +167,8 @@ main {
   width: min(24vw, 180px);
   min-width: 120px;
   border-radius: 14px;
-  border: 1px solid #8161b0;
-  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+  border: 1px solid #8f6ec0;
+  box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 24px rgba(196,129,255,.25);
   backdrop-filter: blur(2px);
 }
 .character-rim {
@@ -365,4 +365,5 @@ footer {
   .landing-info h2 { font-size: 23px; line-height: 29px; }
   h2.landing-info-h2 { font-size: 30px; height: 36px; }
   .content-section { padding: 22px; }
+}22px; }
 }

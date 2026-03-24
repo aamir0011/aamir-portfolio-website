@@ -140,14 +140,27 @@ for (const el of document.querySelectorAll('.reveal')) observer.observe(el);
   let raf = 0;
   const animate = (t) => {
     const time = t * 0.001;
-    coreMesh.rotation.x = time * 0.45 + mouseY;
-    coreMesh.rotation.y = time * 0.72 + mouseX;
-    ring.rotation.z = time * 0.4;
-    points.rotation.y = time * 0.06;
-    points.rotation.x = time * 0.03;
+    mouseX += (targetMouseX - mouseX) * 0.06;
+    mouseY += (targetMouseY - mouseY) * 0.06;
 
-    camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.03;
-    camera.position.y += ((0.4 - mouseY * 0.5) - camera.position.y) * 0.03;
+    coreMesh.rotation.x = time * 0.28 + mouseY;
+    coreMesh.rotation.y = time * 0.46 + mouseX;
+    coreMesh.rotation.z = Math.sin(time * 0.42) * 0.12;
+
+    ring.rotation.z = time * 0.22;
+    ring2.rotation.z = -time * 0.18;
+    ring2.rotation.y = 0.38 + Math.sin(time * 0.35) * 0.08;
+
+    points.rotation.y = time * 0.035;
+    points.rotation.x = time * 0.018;
+
+    const breath = Math.sin(time * 0.9) * 0.06;
+    coreMesh.position.y = breath;
+    ring.position.y = breath * 0.5;
+    ring2.position.y = -breath * 0.4;
+
+    camera.position.x += (mouseX * 0.45 - camera.position.x) * 0.02;
+    camera.position.y += ((0.4 - mouseY * 0.42) - camera.position.y) * 0.02;
     camera.lookAt(0, 0, 0);
 
     renderer.render(scene, camera);
